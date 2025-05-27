@@ -1,0 +1,29 @@
+define ldrpin=A0;
+#define buzzer=4;
+#define relay=5;
+#define Threshold=500;
+void setup() 
+{
+pinMode(ldrpin, INPUT);
+pinMode(buzzer, OUTPUT); 
+pinMode(relay, OUTPUT);
+Serial.begin(9600);
+}
+void loop()  
+{
+int ldrvalue = analogRead(ldrpin);
+Serial.print(ldrvalue);
+if (ldrvalue<Threshold) 
+{
+digitalWrite(relay, HIGH);
+digitalWrite(buzzer, HIGH);
+delay(3000);
+digitalWrite(buzzer, LOW);
+}
+else 
+{
+digitalWrite(relay, LOW);
+digitalWrite(buzzer, LOW);
+}
+delay(500);
+}
